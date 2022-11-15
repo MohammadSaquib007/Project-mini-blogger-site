@@ -60,6 +60,10 @@ const createBlog = async function(req,res){
 
 
 } 
+
+
+
+//----------------------------------getApi
 const blogDetails = async function (req, res) {
     try {
         const data = req.query
