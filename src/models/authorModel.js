@@ -18,8 +18,6 @@ const authorSchema = new mongoose.Schema({
    title: {
       type: String,
       trim: true,
-      lowercase: true,
-      uppercase: true,
       required: "Title is required",
       enum: ["Mr", "Mrs", "Miss"],
    },
@@ -31,13 +29,10 @@ const authorSchema = new mongoose.Schema({
       uppercase: true,
       unique: true,
       required: 'Email address is required',
-      match: [/^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/, 'Please fill a valid email address']
    },
    password: {
       type: String,
       trim: true,
-      lowercase: true,
-      uppercase: true,
       required: "Password is required"
    }
 
