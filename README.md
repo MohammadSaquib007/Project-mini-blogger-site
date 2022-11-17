@@ -47,7 +47,7 @@ Also make sure in the response you return the updated blog document.
 # DELETE /blogs/:blogId
 Check if the blogId exists( and is not deleted). If it does, mark it deleted and return an HTTP status 200 without any response body.
 If the blog document doesn't exist then return an HTTP status of 404 with a body like this
-DELETE /blogs?queryParams
+# DELETE /blogs?queryParams
 Delete blog documents by category, authorid, tag name, subcategory name, unpublished
 If the blog document doesn't exist then return an HTTP status of 404 with a body like this
 Phase II
@@ -110,9 +110,6 @@ Successful Login Response structure
 }
 Refer https://jsonplaceholder.typicode.com/guide/ for some fake blogs data.
 Note: Create a group database and use the same database in connection string by replacing `groupXDatabase
-
-
-
 
 
 //--------------------------------------------------
