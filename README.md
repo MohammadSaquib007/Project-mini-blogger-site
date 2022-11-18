@@ -136,3 +136,25 @@ get Api blog -  const getBlog = async function (req, res){
     
         
     }
+    ========================================================
+
+
+    const auth1 = function (req, res, next) {
+    try {
+        let token = req.headers["x-api-key"];
+        if (!token) return res.status(401).send({ status: false, msg: " token must be present for authentication " })
+
+        jwt.verify(token, "BlogProject", function (err, decodedToken) {
+            if (err) {
+                return res.status(400).send({ status: false, msg: "token invalid" });
+            } 
+            // if(Date.now()>decodedToken.exp*1000) {
+            //     return res.status(400).send({ status: false, msg: "token expired" });
+            // }
+                req.decodedToken = decodedToken
+                next() 
+        })
+    } catch (err) {
+        res.status(500).send({ status: false, msg: err.message })
+    }
+}
