@@ -12,4 +12,6 @@ router.put("/blogs/:blogId",MW.authentication,MW.authorisation,blogController.up
 router.delete("/blogs/:blogId",MW.authentication,MW.authorisation,blogController.deleteBlog)
 router.delete("/blogs",MW.authentication,blogController.deleteByQuery)
 
+
+
 module.exports = router;

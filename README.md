@@ -112,46 +112,4 @@ Refer https://jsonplaceholder.typicode.com/guide/ for some fake blogs data.
 Note: Create a group database and use the same database in connection string by replacing `groupXDatabase
 
 
-//--------------------------------------------------
 
-get Api blog -  const getBlog = async function (req, res){
-    try {
-        let allblog =req.query
-        let {authorId,category}=allblog
- 
-        let blogDetails =await blogModel.find({$and:[{isDeleted:false,isPublished:true},allblog]})
-        if(blogDetails==0){
-        return res.status(404).send({msg:"blog not found"})
-        }
-        else{
-            res.status(200).send({data:blogDetails})
-        }
-    } catch (err) {
-        console.log("this is the error :",err.message)
-        res.status(500).send({msg: "Error", error: err.message})
-      }
-    
-        
-    }
-    ========================================================
-
-
-    const auth1 = function (req, res, next) {
-    try {
-        let token = req.headers["x-api-key"];
-        if (!token) return res.status(401).send({ status: false, msg: " token must be present for authentication " })
-
-        jwt.verify(token, "BlogProject", function (err, decodedToken) {
-            if (err) {
-                return res.status(400).send({ status: false, msg: "token invalid" });
-            } 
-            // if(Date.now()>decodedToken.exp*1000) {
-            //     return res.status(400).send({ status: false, msg: "token expired" });
-            // }
-                req.decodedToken = decodedToken
-                next() 
-        })
-    } catch (err) {
-        res.status(500).send({ status: false, msg: err.message })
-    }
-}
