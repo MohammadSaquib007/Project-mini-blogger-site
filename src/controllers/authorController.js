@@ -1,5 +1,5 @@
 let authorModel = require("../models/authorModel")
-let { isValid,isValidRequestBody } = require("../validator/validator")
+let { isValid,isValidRequestBody,isvalidemail } = require("../validator/validator")
 const jwt = require("jsonwebtoken");
 
 let createAuthor = async function (req, res) {
@@ -19,11 +19,14 @@ let createAuthor = async function (req, res) {
     if(!isValid(email)) { return res.status(400).send({ status: false, msg: "Email is required" }) }
     if(!isValid(password)) { return res.status(400).send({ status: false, msg: "Password is required" }) }
     //--------------------- Email validation --------------------------
+    if(!isvalidemail(email)){
+      return res.status(400).send({ status: false, msg: "please enter valid email" })
+    }
     const isEmailAlreadyused = await authorModel.findOne({ email: email })
     if(isEmailAlreadyused) { return res.status(400).send({ status: false, msg: 'Email is already used' }) }
      else {
       let createAuthor = await authorModel.create(requestBody)
-      res.status(201).send({ status: true, msg: createAuthor })
+      res.status(201).send({ status: true, data: createAuthor })
     }
   }
   catch (error) {

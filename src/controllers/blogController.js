@@ -13,6 +13,7 @@ const createBlog = async function (req, res) {
         if (!isValidRequestBody(requestBody)) {
             return res.status(400).send({ status: false, msg: " Pls Provide requestBody" })
         }
+
         if (!isValid(title)) {
             return res.status(400).send({ status: false, msg: " Pls Provide title for blog" })
         }
@@ -200,4 +201,6 @@ const deleteByQuery = async function (req, res) {
       return   res.status(500).send({ message: "Failed", error: error.message });
     }
 }
+
+
 module.exports = { createBlog, getBlog, updateBlog, deleteBlog, deleteByQuery}
