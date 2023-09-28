@@ -18,7 +18,7 @@ let createAuthor = async function (req, res) {
     if(!isValid(title)) { return res.status(400).send({ status: false, msg: "Title is required" }) }
     if(!isValid(email)) { return res.status(400).send({ status: false, msg: "Email is required" }) }
     if(!isValid(password)) { return res.status(400).send({ status: false, msg: "Password is required" }) }
-    //--------------------- Email validation --------------------------
+    //--------------------- Email validation -------------------------
     if(!isvalidemail(email)){
       return res.status(400).send({ status: false, msg: "please enter valid email" })
     }
